@@ -1,8 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">MyLibraryApp</string>
+    <string name="app_name">My Library Application</string>
     <string name="action_settings">Settings</string>
-    <string name="hello_world">Hello world!</string>
+    <string name="login_header">Log In</string>
+    <string name="login_title">My Library Application</string>
+    <string name="login_msg">Please enter your 4 digit pin to log in</string>
+    <string name="footer_message">Create New Account</string>
+    <string name="add_account_name">Enter Account Name Here</string>
+    <string name="add_account_number">Enter Borrower Number Here</string>
+    <string name="add_account_pin">Enter Borrower Pin Here</string>
+    <string name="add_account_save">Save Account Details</string>
 
 </resources>

@@ -3,21 +3,22 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:scaleType="centerCrop"
+    android:background="#EEEEEE"
     tools:context=".LoginActivity" >
 
     <TextView
-        android:id="@+id/textView1"
+        android:id="@+id/login_header"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentTop="true"
         android:background="#AAAAAA"
-        android:text="Log In"
+        android:text="@string/login_header"
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/login_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
@@ -25,19 +26,76 @@
         android:layout_alignParentTop="true"
         android:layout_marginTop="50dp"
         android:gravity="center"
-        android:text="Leicestershire Library Application"
+        android:text="@string/login_title"
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
     <TextView
-        android:id="@+id/textView3"
+        android:id="@+id/login_msg"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentRight="true"
-        android:layout_below="@+id/textView2"
+        android:layout_below="@+id/login_title"
         android:layout_marginTop="26dp"
         android:gravity="center"
-        android:text="Please enter your 4 digit pin to log in..."
+        android:text="@string/login_msg"
         android:textAppearance="?android:attr/textAppearanceSmall" />
 
+    <EditText
+        android:id="@+id/pin2"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_alignBaseline="@+id/pin1"
+        android:layout_alignBottom="@+id/pin1"
+        android:layout_marginLeft="15dp"
+        android:layout_toRightOf="@+id/pin1"
+        android:background="#FFFFFF"
+        android:ems="10"
+        android:maxLength="1"
+        android:gravity="center"
+        android:inputType="numberPassword" />
+
+    <EditText
+        android:id="@+id/pin3"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_alignBaseline="@+id/pin2"
+        android:layout_alignBottom="@+id/pin2"
+        android:layout_marginLeft="16dp"
+        android:layout_toRightOf="@+id/pin2"
+        android:background="#FFFFFF"
+        android:ems="10"
+        android:maxLength="1"
+        android:gravity="center"
+        android:inputType="numberPassword" />
+
+    <EditText
+        android:id="@+id/pin4"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_alignBaseline="@+id/pin3"
+        android:layout_alignBottom="@+id/pin3"
+        android:layout_marginLeft="16dp"
+        android:layout_toRightOf="@+id/pin3"
+        android:background="#FFFFFF"
+        android:ems="10"
+        android:maxLength="1"
+        android:gravity="center"
+        android:inputType="numberPassword" />
+
+    <EditText
+        android:id="@+id/pin1"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/login_msg"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="26dp"
+        android:background="#FFFFFF"
+        android:ems="10"
+        android:maxLength="1"
+        android:gravity="center"
+        android:inputType="numberPassword"  >
+    	<requestFocus />
+    </EditText>
 </RelativeLayout>
