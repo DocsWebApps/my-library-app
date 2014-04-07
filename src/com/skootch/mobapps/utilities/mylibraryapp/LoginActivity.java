@@ -22,7 +22,6 @@ public class LoginActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_login);
-		
 		final EditText pin1=(EditText) findViewById(R.id.pin1);
 		final EditText pin2=(EditText) findViewById(R.id.pin2);
 		final EditText pin3=(EditText) findViewById(R.id.pin3);
@@ -53,7 +52,7 @@ public class LoginActivity extends Activity {
 				if (pin4.getText().toString().length()<1) return;
 				enteredPin=enteredPin+pin4.getText().toString();
 				if (myPin.equals(enteredPin)) {
-					Intent accountIntent=new Intent(loginView, AccountDisplay.class);
+					Intent accountIntent=new Intent(loginView, AccountDisplayActivity.class);
 					startActivity(accountIntent);
 				} else {
 					Toast.makeText(loginView,"Incorrect pin, please re-enter", Toast.LENGTH_SHORT).show();
@@ -69,18 +68,15 @@ public class LoginActivity extends Activity {
 	private void respondToTextChanges(final EditText et1, final EditText et2) {
 		et1.addTextChangedListener(new TextWatcher() {
 			@Override
-			public void onTextChanged(CharSequence arg0, int arg1, int arg2,
-					int arg3) {
+			public void onTextChanged(CharSequence arg0, int arg1, int arg2, int arg3) {
 				if (et1.getText().toString().length()<1) return;
 				enteredPin=enteredPin+et1.getText().toString();
 				et2.requestFocus();	
 			}
-			
 			@Override
 			public void beforeTextChanged(CharSequence arg0, int arg1,
 					int arg2, int arg3) {
 			}
-			
 			@Override
 			public void afterTextChanged(Editable arg0) {
 			}});
