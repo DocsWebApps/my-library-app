@@ -1,0 +1,8 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<OSDM_Design class="oracle.dbtools.crest.model.design.Design" name="mylibraryapp_schema" id="8DD4EDCF-1DB5-D614-E196-2B3D65BA7DC7" version="3.5">
+<createdBy>dave</createdBy>
+<createdTime>2014-05-27 19:27:14 UTC</createdTime>
+<ownerDesignName>mylibraryapp_schema</ownerDesignName>
+<capitalNames>false</capitalNames>
+<designId>8DD4EDCF-1DB5-D614-E196-2B3D65BA7DC7</designId>
+</OSDM_Design>

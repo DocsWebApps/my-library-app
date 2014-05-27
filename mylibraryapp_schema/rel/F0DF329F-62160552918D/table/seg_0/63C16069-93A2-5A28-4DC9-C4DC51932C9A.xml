@@ -1,0 +1,41 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="63C16069-93A2-5A28-4DC9-C4DC51932C9A" name="accounts">
+<createdBy>dave</createdBy>
+<createdTime>2014-05-27 19:27:43 UTC</createdTime>
+<ownerDesignName>mylibraryapp_schema</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="name" id="956ECA65-3687-5D36-7703-4923726B0CB2">
+<createdBy>dave</createdBy>
+<createdTime>2014-05-27 19:28:33 UTC</createdTime>
+<ownerDesignName>mylibraryapp_schema</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>20</dataTypeSize>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="borrower_number" id="32C472D1-69AE-7EE1-180C-55798E8D6C6A">
+<createdBy>dave</createdBy>
+<createdTime>2014-05-27 19:28:33 UTC</createdTime>
+<ownerDesignName>mylibraryapp_schema</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="borrower_pin" id="1EE941B8-C617-9D88-07CC-713893F0BB87">
+<createdBy>dave</createdBy>
+<createdTime>2014-05-27 19:28:33 UTC</createdTime>
+<ownerDesignName>mylibraryapp_schema</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+</Table>
