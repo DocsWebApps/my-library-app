@@ -5,6 +5,7 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.app.Activity;
 import android.content.Intent;
+import android.os.Handler;
 
 public class LibraryWebViewActivity extends Activity {
 	
@@ -13,6 +14,14 @@ public class LibraryWebViewActivity extends Activity {
 	private Intent callingIntent;
 	private String mUsername;
 	private String mPassword;
+	private Handler mHandle=new Handler();
+	
+	@Override
+	protected void onPause() {
+		super.onPause();
+		mWebView.loadUrl("javascript:document.forms[0].submit();");
+		finish();
+	}
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -21,16 +30,24 @@ public class LibraryWebViewActivity extends Activity {
 		callingIntent=getIntent();
 		mUsername=callingIntent.getStringExtra("Username");
 		mPassword=callingIntent.getStringExtra("Password");
+		mWebView = (WebView) findViewById(R.id.librarywebview);
 		
-        mWebView = (WebView) findViewById(R.id.librarywebview);        
-        mWebView.loadUrl(mLibraryUrl);
-        mWebView.getSettings().setJavaScriptEnabled(true);
-        mWebView.setWebViewClient(new WebViewClient() {
-            public void onPageFinished(WebView view, String url) {
-                view.loadUrl("javascript:document.getElementById('borrowerBarcodeTextBox').value = '"+mUsername+"';" +
-                "document.getElementById('pinTextBox').value='"+mPassword+"';" +
-                "document.forms[1].submit();");
-            }
-        });
+		new Thread(new Runnable() {
+			public void run() {
+				mHandle.post(new Runnable() {
+					public void run() {
+						mWebView.loadUrl(mLibraryUrl);
+						mWebView.getSettings().setJavaScriptEnabled(true);
+						mWebView.setWebViewClient(new WebViewClient() {
+							public void onPageFinished(WebView view, String url) {
+								view.loadUrl("javascript:document.getElementById('borrowerBarcodeTextBox').value = '"+mUsername+"';" +
+										"document.getElementById('pinTextBox').value='"+mPassword+"';" +
+										"document.forms[1].submit();");
+							}
+						});
+					}
+				});
+			}
+		}).start();
 	}
 }
