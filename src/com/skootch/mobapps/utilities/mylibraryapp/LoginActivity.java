@@ -54,6 +54,7 @@ public class LoginActivity extends Activity {
 				if (myPin.equals(enteredPin)) {
 					Intent accountIntent=new Intent(loginView, AccountDisplayActivity.class);
 					startActivity(accountIntent);
+					finish();
 				} else {
 					Toast.makeText(loginView,"Incorrect pin, please re-enter", Toast.LENGTH_SHORT).show();
 					enteredPin="";

@@ -25,6 +25,7 @@ public class LibraryWebViewActivity extends Activity {
     
     public void dismissDialog() {
         if (mProgressDialog != null)
+
             mProgressDialog.dismiss();
     }
 	
@@ -38,24 +39,18 @@ public class LibraryWebViewActivity extends Activity {
 		password=callingIntent.getStringExtra("Password");
 		mWebView = (WebView) findViewById(R.id.librarywebview);
 		showDialog(name);
-		
-		new Thread(new Runnable() {
-			public void run() {
-				mHandle.post(new Runnable() {
-					public void run() {
-						mWebView.loadUrl(mLibraryUrl);
-						mWebView.getSettings().setJavaScriptEnabled(true);
-						mWebView.setWebViewClient(new WebViewClient() {
-							public void onPageFinished(WebView view, String url) {
-								view.loadUrl("javascript:document.getElementById('borrowerBarcodeTextBox').value = '"+username+"';" +
-										"document.getElementById('pinTextBox').value='"+password+"';" +
-										"document.forms[1].submit();");
-							}
-						});
-					}
-				});
+		mWebView.getSettings().setJavaScriptEnabled(true);
+		mWebView.setWebViewClient(new WebViewClient() {
+		    @Override
+			public void onPageFinished(WebView view, String url) {
+				super.onPageFinished(view, url);
+				view.loadUrl("javascript:document.getElementById('borrowerBarcodeTextBox').value = '"+username+"';" +
+						"document.getElementById('pinTextBox').value='"+password+"';" +
+						"document.forms[1].submit();");
+				dismissDialog();
 			}
-		}).start();
+		});
+		mWebView.loadUrl(mLibraryUrl);
 	}
 	
 	@Override
