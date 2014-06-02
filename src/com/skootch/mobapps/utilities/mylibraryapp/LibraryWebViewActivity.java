@@ -25,7 +25,6 @@ public class LibraryWebViewActivity extends Activity {
     
     public void dismissDialog() {
         if (mProgressDialog != null)
-
             mProgressDialog.dismiss();
     }
 	
@@ -41,7 +40,6 @@ public class LibraryWebViewActivity extends Activity {
 		showDialog(name);
 		mWebView.getSettings().setJavaScriptEnabled(true);
 		mWebView.setWebViewClient(new WebViewClient() {
-		    @Override
 			public void onPageFinished(WebView view, String url) {
 				super.onPageFinished(view, url);
 				view.loadUrl("javascript:document.getElementById('borrowerBarcodeTextBox').value = '"+username+"';" +
