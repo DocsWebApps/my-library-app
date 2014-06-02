@@ -99,6 +99,7 @@ public class AccountDisplayAdapter extends BaseAdapter{
 			public void onClick(View v) {
 				Intent intent=new Intent(mContext, LibraryWebViewActivity.class);
 				intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+				intent.putExtra("Name", record.getName());
 				intent.putExtra("Username", record.getBorrowerNumber());
 				intent.putExtra("Password", record.getBorrowerPin());
 				mContext.startActivity(intent);
