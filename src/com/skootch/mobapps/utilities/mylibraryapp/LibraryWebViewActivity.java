@@ -1,12 +1,12 @@
 package com.skootch.mobapps.utilities.mylibraryapp;
 
 import android.os.Bundle;
+import android.webkit.ValueCallback;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
-import android.os.Handler;
 
 public class LibraryWebViewActivity extends Activity {
 	
@@ -16,16 +16,16 @@ public class LibraryWebViewActivity extends Activity {
 	private String name;
 	private String username;
 	private String password;
-	private Handler mHandle=new Handler();
 	private ProgressDialog mProgressDialog;
 	
     public void showDialog(String message) {
         mProgressDialog=ProgressDialog.show(this,"Logging In:", message+"'s Account");
     }
     
-    public void dismissDialog() {
+    public ValueCallback<String> dismissDialog() {
         if (mProgressDialog != null)
             mProgressDialog.dismiss();
+		return null;
     }
 	
 	@Override
@@ -39,22 +39,22 @@ public class LibraryWebViewActivity extends Activity {
 		mWebView = (WebView) findViewById(R.id.librarywebview);
 		showDialog(name);
 		mWebView.getSettings().setJavaScriptEnabled(true);
+		mWebView.getSettings().setBuiltInZoomControls(true);
+		mWebView.loadUrl(mLibraryUrl);
 		mWebView.setWebViewClient(new WebViewClient() {
 			public void onPageFinished(WebView view, String url) {
 				super.onPageFinished(view, url);
-				view.loadUrl("javascript:document.getElementById('borrowerBarcodeTextBox').value = '"+username+"';" +
+				view.evaluateJavascript("javascript:document.getElementById('borrowerBarcodeTextBox').value = '"+username+"';" +
 						"document.getElementById('pinTextBox').value='"+password+"';" +
-						"document.forms[1].submit();");
-				dismissDialog();
+						"document.forms[1].submit();", dismissDialog());
 			}
 		});
-		mWebView.loadUrl(mLibraryUrl);
 	}
 	
 	@Override
 	protected void onPause() {
 		super.onPause();
-		mWebView.loadUrl("javascript:document.forms[0].submit();");
+		mWebView.evaluateJavascript("javascript:document.forms[0].submit();", null);
 		finish();
 	}
 }
