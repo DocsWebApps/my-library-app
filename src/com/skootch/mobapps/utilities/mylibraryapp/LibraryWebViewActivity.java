@@ -1,11 +1,13 @@
 package com.skootch.mobapps.utilities.mylibraryapp;
 
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.os.Handler;
 
 public class LibraryWebViewActivity extends Activity {
@@ -36,20 +38,39 @@ public class LibraryWebViewActivity extends Activity {
 		name=callingIntent.getStringExtra("Name");
 		username=callingIntent.getStringExtra("Username");
 		password=callingIntent.getStringExtra("Password");
-		mWebView = (WebView) findViewById(R.id.librarywebview);
-		showDialog(name);
+		mWebView = new WebView(LibraryWebViewActivity.this);
 		mWebView.getSettings().setJavaScriptEnabled(true);
-		mWebView.setWebViewClient(new WebViewClient() {
-			public void onPageFinished(WebView view, String url) {
-				super.onPageFinished(view, url);
-				view.loadUrl("javascript:document.getElementById('borrowerBarcodeTextBox').value = '"+username+"';" +
-						"document.getElementById('pinTextBox').value='"+password+"';" +
-						"document.forms[1].submit();");
-				dismissDialog();
-			}
-		});
-		mWebView.loadUrl(mLibraryUrl);
+		new LoadWebView().execute(mWebView);
 	}
+	
+	class LoadWebView extends AsyncTask<WebView, Integer, WebView> {
+		WebView webView1 = new WebView(LibraryWebViewActivity.this);
+		
+		protected void onPreExecute() {
+			showDialog(name);
+		}
+		
+		protected WebView doInBackground(WebView... webView) {
+			webView1.setWebViewClient(new WebViewClient() {
+				public void onPageFinished(WebView view, String url) {
+					super.onPageFinished(view, url);
+					view.loadUrl("javascript:document.getElementById('borrowerBarcodeTextBox').value = '"+username+"';" +
+							"document.getElementById('pinTextBox').value='"+password+"';" +
+							"document.forms[1].submit();");
+					
+				}
+			});
+			webView1.loadUrl(mLibraryUrl);
+			
+			return webView1;
+		}
+		
+		protected void onPostExecute(WebView webView) {
+			dismissDialog();
+			setContentView(webView1);
+		}
+	}
+	
 	
 	@Override
 	protected void onPause() {
